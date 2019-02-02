@@ -28,7 +28,7 @@
         class="hidden-md-and-up"
       ></v-toolbar-side-icon>
       <v-toolbar-title>
-          <router-link to="/" tag="span" class="pointer">Ad aplication</router-link>
+        <router-link to="/" tag="span" class="pointer">Ad aplication</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
@@ -38,8 +38,9 @@
           :key="link.title"
           :to="link.url"
         >
-          <v-icon left >{{ link.icon }}</v-icon>
-          {{ link.title }}</v-btn>
+          <v-icon left>{{ link.icon }}</v-icon>
+          {{ link.title }}
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -50,25 +51,25 @@
 
 <script>
 
-export default {
-  data() {
-    return {
-      drawer: false,
-      links: [
-        {title: 'Login', icon: 'lock', url: '/login'},
-        {title: 'Registration', icon: 'face', url: '/registration'},
-        {title: 'Orders', icon: 'bookmark_border', url: '/orders'},
-        {title: 'New ad', icon: 'note_add', url: '/new'},
-        {title: 'My ads', icon: 'list', url: '/list'}
-      ]
-    }
-  }
+	export default {
+		data() {
+			return {
+				drawer: false,
+				links: [
+					{title: 'Login', icon: 'lock', url: '/login'},
+					{title: 'Registration', icon: 'face', url: '/registration'},
+					{title: 'Orders', icon: 'bookmark_border', url: '/orders'},
+					{title: 'New ad', icon: 'note_add', url: '/new'},
+					{title: 'My ads', icon: 'list', url: '/list'}
+				]
+			}
+		}
 
-}
+	}
 </script>
 
 <style scoped>
-    .pointer {
-        cursor: pointer;
-    }
+  .pointer {
+    cursor: pointer;
+  }
 </style> 
