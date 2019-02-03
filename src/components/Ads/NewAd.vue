@@ -82,9 +82,11 @@
 					const ad = {
 						title: this.title,
 						description: this.description,
-						promo: this.promo
+						promo: this.promo,
+            imageSrc: 'https://avatars.mds.yandex.net/get-pdb/25978/b1d7b1bf-ef42-4dd6-b3db-11397a2514bc/s1200'
 					};
-					console.log(ad)
+
+					this.$store.dispatch('createAd', ad);
 				}
 			}
 		}
