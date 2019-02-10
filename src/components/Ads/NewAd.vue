@@ -54,7 +54,8 @@
             <v-spacer></v-spacer>
             <v-btn
               class="success"
-              :disabled="!valid"
+              :loading="loading"
+              :disabled="!valid || loading"
               @click="createAd"
             >
               Create Ad
@@ -76,6 +77,11 @@
 				valid: false,
 			}
 		},
+    computed: {
+			loading() {
+				return this.$store.getters.loading;
+      }
+    },
 		methods: {
 			createAd() {
 				if (this.$refs.form.validate()) {
@@ -86,7 +92,11 @@
             imageSrc: 'https://avatars.mds.yandex.net/get-pdb/25978/b1d7b1bf-ef42-4dd6-b3db-11397a2514bc/s1200'
 					};
 
-					this.$store.dispatch('createAd', ad);
+					this.$store.dispatch('createAd', ad)
+            .then(() => {
+            	this.$router.push('/list')
+            })
+            .catch(() => {})
 				}
 			}
 		}
