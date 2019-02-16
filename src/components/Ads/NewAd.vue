@@ -26,16 +26,23 @@
         </v-form>
         <v-layout row class="mb-3">
           <v-flex xs12>
-            <v-btn class="warning">
+            <v-btn class="warning" @click="triggerUpload">
               Upload
               <v-icon right dark>cloud_upload</v-icon>
             </v-btn>
+            <input
+              ref="fileInput"
+              type="file"
+              style="display: none;"
+              accept="image/*"
+              @change="onFileChange"
+            >
           </v-flex>
         </v-layout>
 
         <v-layout row>
           <v-flex class="xs12">
-            <img src="" alt="">
+            <img :src="imageSrc" alt="" height="100" v-if="imageSrc">
           </v-flex>
         </v-layout>
 
@@ -55,7 +62,7 @@
             <v-btn
               class="success"
               :loading="loading"
-              :disabled="!valid || loading"
+              :disabled="!valid || !image || loading"
               @click="createAd"
             >
               Create Ad
@@ -75,6 +82,8 @@
 				description: '',
 				promo: false,
 				valid: false,
+        image: null,
+        imageSrc: ''
 			}
 		},
     computed: {
@@ -84,7 +93,7 @@
     },
 		methods: {
 			createAd() {
-				if (this.$refs.form.validate()) {
+				if (this.$refs.form.validate() && this.image) {
 					const ad = {
 						title: this.title,
 						description: this.description,
@@ -98,7 +107,20 @@
             })
             .catch(() => {})
 				}
-			}
+			},
+			triggerUpload() {
+				this.$refs.fileInput.click();
+			},
+			onFileChange(event) {
+				const file = event.target.files[0];
+
+				const reader = new FileReader();
+				reader.onload = e => {
+          this.imageSrc = reader.result;
+        }
+				reader.readAsDataURL(file);
+				this.image = file;
+      }
 		}
 	}
 </script>
