@@ -98,7 +98,7 @@
 						title: this.title,
 						description: this.description,
 						promo: this.promo,
-            imageSrc: 'https://avatars.mds.yandex.net/get-pdb/25978/b1d7b1bf-ef42-4dd6-b3db-11397a2514bc/s1200'
+            image: this.image
 					};
 
 					this.$store.dispatch('createAd', ad)
@@ -117,7 +117,7 @@
 				const reader = new FileReader();
 				reader.onload = e => {
           this.imageSrc = reader.result;
-        }
+        };
 				reader.readAsDataURL(file);
 				this.image = file;
       }
